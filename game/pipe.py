@@ -22,4 +22,9 @@ class Pipe:
 
     def bottom_rect(self):
         bottom_y = self.gap_y + self.gap
-        return pygame.Rect(self.x, bottom_y, self.width, self.screen_height - bottom_y)
+        return pygame.Rect(
+            self.x,
+            bottom_y,
+            self.width,
+            self.screen_height - bottom_y
+        )

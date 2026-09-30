@@ -1,8 +1,10 @@
 import pygame
+from pygame import event
 from game.game_engine import GameEngine
 
 # Initialize pygame/Start application
 pygame.init()
+pygame.mixer.init()
 
 # Screen dimensions
 WIDTH, HEIGHT = 500, 700
@@ -22,12 +24,19 @@ engine = GameEngine(WIDTH, HEIGHT)
 
 def main():
     running = True
+
     while running:
         SCREEN.fill(SKY_BLUE)
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+ 
             engine.handle_event(event)
+
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE and engine.game_over:
+                    engine.reset()
 
         engine.handle_input()
         engine.update()
